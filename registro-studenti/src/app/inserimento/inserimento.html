@@ -1,0 +1,80 @@
+
+<h2>Nuovo studente</h2>
+
+<form
+  #modulo="ngForm"
+  (ngSubmit)="salva()"
+  class="p-4 bg-body-tertiary rounded-3">
+
+  <div class="mb-3">
+    <label for="nome" class="form-label">
+      Nome e cognome
+    </label>
+
+    <input
+      id="nome"
+      name="nome"
+      class="form-control"
+      required
+      [ngModel]="nome()"
+      (ngModelChange)="nome.set($event)"
+      #campoNome="ngModel" />
+
+    @if (campoNome.invalid && campoNome.touched) {
+      <div class="text-danger small mt-1">
+        Inserisci nome e cognome.
+      </div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="classe" class="form-label">Classe</label>
+
+    <input
+      id="classe"
+      name="classe"
+      class="form-control"
+      required
+      [ngModel]="classe()"
+      (ngModelChange)="classe.set($event)"
+      #campoClasse="ngModel" />
+
+    @if (campoClasse.invalid && campoClasse.touched) {
+      <div class="text-danger small mt-1">
+        Inserisci la classe.
+      </div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="media" class="form-label">
+      Media dei voti
+    </label>
+
+    <input
+      id="media"
+      name="media"
+      type="number"
+      class="form-control"
+      required
+      min="1"
+      max="10"
+      step="0.1"
+      [ngModel]="media()"
+      (ngModelChange)="media.set($event)"
+      #campoMedia="ngModel" />
+
+    @if (campoMedia.invalid && campoMedia.touched) {
+      <div class="text-danger small mt-1">
+        Inserisci una media compresa tra 1 e 10.
+      </div>
+    }
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="modulo.invalid">
+    Salva
+  </button>
+</form>
